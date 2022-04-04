@@ -1,0 +1,11 @@
+IMPORTANT NOTE - Description English 
+
+*Favicon
+
+If you want to create your favicon, do it in any design tool
+(I recommend figma, it's easier) and export it with the size of 32px.
+
+* Images of projects
+
+When you insert the images of your projects, keep in mind that they must measure 
+in a rectangular format (eg: 600 x 400, 1000 x 800, 1200 x 1000, etc).
