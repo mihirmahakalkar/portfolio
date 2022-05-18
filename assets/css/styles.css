@@ -320,6 +320,7 @@ body.dark-theme {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
+  box-shadow: hsla(0, 0%, 39%, 0.2) 0px 2px 8px 0px;
 }
 
 .projects__card img {
