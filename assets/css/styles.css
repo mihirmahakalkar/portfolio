@@ -128,6 +128,8 @@ body.dark-theme {
   background-color: hsl(var(--hue), 8%, 32%);
 }
 
+/* .dark-theme . */
+
 /*=============== REUSABLE CSS CLASSES ===============*/
 .container {
   max-width: 968px;
@@ -393,10 +395,10 @@ body.dark-theme {
   column-gap: .5rem;
 }
 
-/* .skills__data i {
+.skills__data i {
   font-size: 18px;
   color: var(--first-color);
-} */
+}
 
 .skills__data img {
   width: 18px;
@@ -483,6 +485,9 @@ body.dark-theme {
 }
 
 @media screen and (min-width: 776px) {
+  #aboutme {
+    padding: 0 50px;
+  }
   .projects__content,
   .skills__content {
     grid-template-columns: repeat(2, 332px);
@@ -548,5 +553,19 @@ body.dark-theme {
 
   .footer__copy {
     margin: 4.5rem 0 2.5rem;
+  }
+}
+
+/* For desktop view */
+@media screen and (min-width: 1200px) {
+  #aboutme {
+    padding: 0;
+  }
+  .projects__content {
+    grid-template-columns: repeat(3, 332px);
+  }
+
+  .skills__content {
+    grid-template-columns: repeat(3, 270px);
   }
 }
