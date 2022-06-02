@@ -200,11 +200,11 @@ body.dark-theme {
 .profile__social {
   display: flex;
   justify-content: center;
-  column-gap: .75rem;
+  column-gap: 1.25rem;
 }
 
 .profile__social-link {
-  font-size: 1.25rem;
+  font-size: 2rem;
   color: var(--title-color);
   transition: .3s;
 }
@@ -213,8 +213,12 @@ body.dark-theme {
   color: var(--first-color);
 }
 
+.dark-theme .devicon-codepen-plain.colored {
+  color: white;
+}
+
 .profile__info {
-  grid-template-columns: repeat(3, max-content);
+  grid-template-columns: repeat(2, max-content);
   justify-content: center;
   column-gap: 2.5rem;
 }
