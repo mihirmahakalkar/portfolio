@@ -171,12 +171,12 @@ body.dark-theme {
   font-size: 50px;
 }
 
-/* .profile__perfil img {
-  width: 75px;
-} */
+.profile__perfil img {
+  width: 125px;
+}
 
 .profile__border {
-  border: 3.5px solid var(--first-color);
+  border: 3.5px solid #aaa;
   justify-self: center;
   width: 115px;
   height: 115px;
@@ -526,9 +526,6 @@ body.dark-theme {
   .profile__perfil {
     width: 120px;
     height: 120px;
-  }
-  .profile__perfil img {
-    width: 90px;
   }
   .profile__profession {
     margin-bottom: 1.5rem;
