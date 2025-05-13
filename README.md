@@ -1,4 +1,4 @@
-- Link: https://cryptospider937.github.io/portfolio/ 
+- Link: https://mihirmahakalkar.github.io/portfolio/ 
 - Responsive mini portfolio website Using HTML CSS & JavaScript
 - Contains animations css.
 - Includes a light and dark mode.
