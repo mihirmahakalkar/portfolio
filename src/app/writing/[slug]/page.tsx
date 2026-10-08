@@ -52,6 +52,13 @@ export default async function ArticlePage({
             if (block.type === "h2") {
               return <h2 key={index}>{block.text}</h2>;
             }
+            if (block.type === "note") {
+              return (
+                <p key={index} className="ste-note">
+                  {block.text}
+                </p>
+              );
+            }
             if (block.type === "list") {
               return (
                 <ul key={index}>
@@ -116,9 +123,9 @@ export default async function ArticlePage({
                             <td
                               key={cellIndex}
                               className={
-                                cell === "Approved"
+                                cell === "Approved" || cell === "Strong"
                                   ? "ste-yes"
-                                  : cell === "Not approved"
+                                  : cell === "Not approved" || cell === "Weak"
                                     ? "ste-no"
                                     : undefined
                               }

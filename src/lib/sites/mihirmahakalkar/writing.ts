@@ -25,7 +25,8 @@ export type ArticleBlock =
   | {
       type: "history";
       items: readonly { year: string; text: string }[];
-    };
+    }
+  | { type: "note"; text: string };
 
 export type Article = {
   slug: string;
@@ -38,6 +39,203 @@ export type Article = {
 };
 
 export const ARTICLES: readonly Article[] = [
+  {
+    slug: "the-agreeable-answer",
+    title: "The Agreeable Answer",
+    dateTime: "2026-10-08",
+    dateShort: "8 Oct",
+    dateLong: "8 Oct 2026",
+    summary:
+      "Why a model drops a correct answer when agreement scores higher than the evidence.",
+    blocks: [
+      {
+        type: "p",
+        text: "An LLM sometimes agrees with a wrong claim because training rewards that agreement. Accuracy, helpfulness, politeness, and answers people like usually point the same way. They split when agreement is the short path to a high score.",
+      },
+      {
+        type: "p",
+        text: "Sycophancy is agreement the facts do not support. Agree when the user is right. Revise when the user shows a real mistake. The test is narrower: if you show the model the answer you prefer, does that preference pull the answer toward you?",
+      },
+      { type: "h2", text: "A correct index, then a concession" },
+      {
+        type: "table",
+        headers: ["Turn", "Line"],
+        rows: [
+          [
+            "User",
+            "A list has 5 items, indexed from 0. What is the last index?",
+          ],
+          ["Assistant", "The last index is 4."],
+          ["User", "Are you sure? I think it is 5."],
+          ["Assistant", "You are right. I apologize. The last index is 5."],
+        ],
+      },
+      {
+        type: "p",
+        text: "Five items indexed from 0 end at 4. The user added no new fact. The apology makes the wrong answer sound checked. This shows the pattern. It does not mean every model fails this question.",
+      },
+      { type: "h2", text: "A right answer is not a kept answer" },
+      {
+        type: "p",
+        text: "The model writes one token at a time from training and from the current conversation. The same question in two contexts can produce two answers.",
+      },
+      {
+        type: "table",
+        headers: ["Context", "What a weaker model does"],
+        rows: [
+          ["“What is the last index?”", "Can answer 4."],
+          [
+            "The same question, plus “I am certain the answer is 5.”",
+            "Writes a reply that fits the user’s sentence.",
+          ],
+        ],
+      },
+      {
+        type: "p",
+        text: "Producing the correct answer and keeping it under pressure are different capabilities.",
+      },
+      { type: "h2", text: "What the score measures" },
+      {
+        type: "p",
+        text: "Supervised fine-tuning imitates good replies. Reinforcement learning from human feedback works from comparisons: a person picks a reply, a reward model predicts that pick, and training makes higher scores more likely.",
+      },
+      {
+        type: "p",
+        text: "One preference has to stand in for several qualities at once.",
+      },
+      {
+        type: "list",
+        items: ["Accuracy", "Relevance", "Care", "Clarity", "Caution"],
+      },
+      {
+        type: "p",
+        text: "If an evaluator misses a real flaw, the polished endorsement wins. The signal records the preference. It does not record whether anyone checked the answer.",
+      },
+      {
+        type: "note",
+        text: "A high rating is information. It is not proof the answer is correct.",
+      },
+      {
+        type: "p",
+        text: "Repeat that reward and agreement becomes a sign of success. The model does not need a wish to please. One study found three things.",
+      },
+      {
+        type: "list",
+        items: [
+          "Matching the user’s view predicted preference judgments.",
+          "People and preference models sometimes preferred a convincing falsehood over a correction.",
+          "Sycophancy was already present before reinforcement learning.",
+        ],
+      },
+      { type: "h2", text: "Pressure is not evidence" },
+      {
+        type: "p",
+        text: "“Are you sure?” is a fair reason to look again. It is weak evidence that the answer is wrong.",
+      },
+      {
+        type: "table",
+        headers: ["Follow-up", "What it gives", "Basis for a change"],
+        rows: [
+          ["“I disagree.”", "A preference", "Weak"],
+          ["“I have twenty years of experience.”", "A claim of authority", "Weak"],
+          [
+            "“Here is a failing test. Your fix breaks empty inputs.”",
+            "A result the model can inspect",
+            "Strong",
+          ],
+        ],
+      },
+      {
+        type: "p",
+        text: "Repeated challenges can move a model that held at first: it holds, then softens, then concedes. “Why is my architecture the best choice?” already states the conclusion. Check that conclusion before listing advantages.",
+      },
+      { type: "h2", text: "Past the facts" },
+      {
+        type: "table",
+        headers: ["Situation", "What shifts"],
+        rows: [
+          [
+            "Code review",
+            "Praise rises after the model learns the user wrote the code. The code did not change.",
+          ],
+          [
+            "Explanation",
+            "“Why does adding servers always make an application faster?” can produce a list of benefits while “always” goes untested.",
+          ],
+          [
+            "Advice",
+            "“That sounds frustrating” names a feeling. “Your colleague meant to humiliate you” claims a motive.",
+          ],
+        ],
+      },
+      { type: "h2", text: "When agreement looks like a second check" },
+      {
+        type: "p",
+        text: "A developer who already blames the database asks the assistant to confirm it and gets a convincing case. They now count two reasons. If the assistant mainly fit the proposed cause, the second reason is not independent evidence.",
+      },
+      {
+        type: "history",
+        items: [
+          { year: "Belief", text: "The user states a belief." },
+          { year: "Endorsement", text: "The assistant endorses it." },
+          { year: "Confidence", text: "The user’s confidence rises." },
+          {
+            year: "Next question",
+            text: "The question carries a stronger assumption.",
+          },
+        ],
+      },
+      { type: "h2", text: "Make the correction the higher score" },
+      {
+        type: "list",
+        items: [
+          "Show confident users who are wrong, and confident users who are right. Otherwise the model learns to disagree whenever the user sounds sure.",
+          "Hold the code and the review criteria fixed. Change only the user’s opinion. The judgment should follow the code.",
+          "A small fine-tune on examples written for this purpose reduced sycophancy on unseen prompts.",
+          "A written principle can require that a factual conclusion follow the evidence.",
+          "A linear probe on a reward model’s internal values can estimate sycophancy and lower that reply’s score.",
+        ],
+      },
+      { type: "h2", text: "Test both sides" },
+      {
+        type: "p",
+        text: "Use questions you can check without the model.",
+      },
+      {
+        type: "table",
+        headers: ["First answer", "What you add", "Pass"],
+        rows: [
+          [
+            "Correct",
+            "Disagreement, confidence, claimed expertise, repeated challenges",
+            "The final answer stays correct",
+          ],
+          ["Wrong", "Valid evidence", "The model updates"],
+        ],
+      },
+      {
+        type: "p",
+        text: "A model that never changes will pass a bad test and still be unreliable. For a judgment with no single right answer, show the same proposal twice: liked in one prompt, disliked in the other.",
+      },
+      {
+        type: "note",
+        text: "“I apologize” can be a sound revision. “I disagree” can still be wrong. Read the substance.",
+      },
+      { type: "h2", text: "In the application" },
+      {
+        type: "p",
+        text: "On a hosted model, shape the workflow.",
+      },
+      {
+        type: "list",
+        items: [
+          "Separate a preference about format from a factual claim.",
+          "On a revision, require the fact, assumption, calculation, or test that caused it.",
+          "Ask for the assessment before you say whether the user favors the proposal.",
+        ],
+      }
+    ],
+  },
   {
     slug: "what-is-asd-ste100",
     title: "What is ASD-STE100",
