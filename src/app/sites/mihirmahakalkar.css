@@ -10,31 +10,48 @@
   }
 }
 
-:root,
-[data-theme="light"] {
+:root {
   color-scheme: light;
   --lm-bg: #ffffff;
   --lm-fg: #1a1a1e;
   --lm-name: #0a0a0a;
   --lm-dim: #6e6e73;
   --lm-faint: #74747a;
+  --lm-quiet: #c5c5ca;
   --lm-line: rgba(0, 0, 0, 0.08);
+  --lm-border: rgba(0, 0, 0, 0.12);
   --lm-ul: rgba(0, 0, 0, 0.22);
   --lm-accent: #c4c4c8;
   --lm-ok: #1e9e63;
+  --lm-no: #9a3b3b;
+  --lm-surface: #f6f6f7;
+  --lm-chip: #f3f3f4;
+  --lm-hover: #f2f2f4;
+  --lm-track: #f0f0f2;
+  --lm-track-fill: #c8c8ce;
 }
 
-[data-theme="dark"] {
-  color-scheme: dark;
-  --lm-bg: #0a0a0b;
-  --lm-fg: #e6e6e9;
-  --lm-name: #fafafa;
-  --lm-dim: #8e8e95;
-  --lm-faint: #7a7a80;
-  --lm-line: rgba(255, 255, 255, 0.1);
-  --lm-ul: rgba(255, 255, 255, 0.26);
-  --lm-accent: #46464d;
-  --lm-ok: #2fbf71;
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --lm-bg: #0a0a0b;
+    --lm-fg: #e6e6e9;
+    --lm-name: #fafafa;
+    --lm-dim: #8e8e95;
+    --lm-faint: #7a7a80;
+    --lm-quiet: #5e5e66;
+    --lm-line: rgba(255, 255, 255, 0.1);
+    --lm-border: rgba(255, 255, 255, 0.12);
+    --lm-ul: rgba(255, 255, 255, 0.26);
+    --lm-accent: #46464d;
+    --lm-ok: #2fbf71;
+    --lm-no: #e08a8a;
+    --lm-surface: #161618;
+    --lm-chip: #1c1c1f;
+    --lm-hover: #1a1a1d;
+    --lm-track: #2a2a2e;
+    --lm-track-fill: #8a8a92;
+  }
 }
 
 .lm-name {
@@ -129,7 +146,7 @@
   height: 20px;
   overflow: hidden;
   border-radius: 50%;
-  background: #f3f3f4;
+  background: var(--lm-chip);
   font-size: 13px;
   line-height: 1;
   outline: 1px solid var(--lm-line);
@@ -380,7 +397,7 @@
 .ste-part {
   min-width: 0;
   border-radius: 12px;
-  background: #f6f6f7;
+  background: var(--lm-surface);
   padding: 12px 12px 14px;
 }
 
@@ -407,7 +424,7 @@
 
 .ste-flow-card {
   border-radius: 12px;
-  background: #f6f6f7;
+  background: var(--lm-surface);
   padding: 12px 14px;
 }
 
@@ -465,7 +482,7 @@
 }
 
 .ste-no {
-  color: #9a3b3b;
+  color: var(--lm-no);
 }
 
 .article-body .ste-limits {
@@ -499,14 +516,14 @@
   height: 6px;
   overflow: hidden;
   border-radius: 999px;
-  background: #f0f0f2;
+  background: var(--lm-track);
 }
 
 .ste-limit-track span {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: #c8c8ce;
+  background: var(--lm-track-fill);
 }
 
 .ste-history {
@@ -538,14 +555,14 @@
   position: relative;
   min-height: 280px;
   border-radius: 16px;
-  background: #f6f6f7;
+  background: var(--lm-surface);
 }
 
 .article-figure-label {
   position: absolute;
   top: 14px;
   left: 16px;
-  color: #c5c5ca;
+  color: var(--lm-quiet);
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.01em;
@@ -613,7 +630,7 @@
 
 .entry-card:hover,
 .entry-card:focus-visible {
-  background: #f2f2f4;
+  background: var(--lm-hover);
 }
 
 .entry-card .ct-slot {
@@ -629,9 +646,9 @@
 
 .skill-card {
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--lm-border);
   border-radius: 12px;
-  background: #fff;
+  background: var(--lm-bg);
 }
 
 .skill-cmd {
@@ -674,7 +691,7 @@
 .skill-links {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 1px solid var(--lm-border);
 }
 
 .skill-link {
@@ -689,12 +706,12 @@
 }
 
 .skill-link + .skill-link {
-  border-left: 1px solid rgba(0, 0, 0, 0.12);
+  border-left: 1px solid var(--lm-border);
 }
 
 .skill-link:hover,
 .skill-link:focus-visible {
-  background: #f2f2f4;
+  background: var(--lm-hover);
 }
 
 .skill-link .ct-slot {
@@ -719,11 +736,11 @@
 .faq-label span:last-child {
   height: 1px;
   flex: 1;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--lm-line);
 }
 
 .faq-item {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--lm-line);
 }
 
 .faq-q {

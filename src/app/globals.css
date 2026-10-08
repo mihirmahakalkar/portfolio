@@ -9,11 +9,12 @@
 }
 
 @layer base {
+  html {
+    background: var(--lm-bg);
+    @apply font-sans;
+  }
   body {
     background: var(--lm-bg);
     color: var(--lm-fg);
-  }
-  html {
-    @apply font-sans;
   }
 }
