@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ArticleProgress } from "@/components/sites/mihirmahakalkar/article-progress";
 import { ReturnLink } from "@/components/sites/mihirmahakalkar/return-link";
 import { SiteFrame } from "@/components/sites/mihirmahakalkar/site-frame";
 import { ARTICLES, getArticle } from "@/lib/sites/mihirmahakalkar/writing";
@@ -35,6 +36,7 @@ export default async function ArticlePage({
 
   return (
     <SiteFrame>
+      <ArticleProgress />
       <div data-fade="0.06" data-fade-kind="body" className="return-bar">
         <ReturnLink href="/writing" label="writing" />
       </div>
